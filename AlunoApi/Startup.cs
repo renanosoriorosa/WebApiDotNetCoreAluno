@@ -34,6 +34,8 @@ namespace AlunoApi
 
             services.AddControllers();
 
+            services.AddCors();
+
             services.AddScoped<IAlunoService, AlunoService>();
 
             services.AddSwaggerGen(c =>
@@ -57,6 +59,8 @@ namespace AlunoApi
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000"));
 
             app.UseEndpoints(endpoints =>
             {
